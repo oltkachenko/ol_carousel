@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>carousel</title>
+	<link rel="stylesheet" href="css/style.css"/>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script type="text/javascript" src="js/carousel.js"></script>
+	<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+</head>
+<body>
+	
+	<div class="wrapper">
+		<div class="carousel-wrapper regular">
+			<div class="carousel">
+				<ul>
+					<li class="item item-1"><img src="images/item-1.png"></li>
+					<li class="item item-2"><img src="images/item-2.png"></li>
+					<li class="item item-3"><img src="images/item-3.png"></li>
+					<li class="item item-4"><img src="images/item-4.png"></li>
+					<li class="item item-5"><img src="images/item-5.png"></li>
+					<li class="item item-6"><img src="images/item-6.png"></li>
+					<li class="item item-7"><img src="images/item-7.png"></li>
+					<li class="item item-8"><img src="images/item-8.png"></li>
+				</ul>
+			</div>
+		</div>
+		<div class="carousel-wrapper show-image">
+			<div class="carousel">
+				<ul>
+					<li class="item item-1"><img src="images/item-1.png"></li>
+					<li class="item item-2"><img src="images/item-2.png"></li>
+					<li class="item item-3"><img src="images/item-3.png"></li>
+					<li class="item item-4"><img src="images/item-4.png"></li>
+					<li class="item item-5"><img src="images/item-5.png"></li>
+					<li class="item item-6"><img src="images/item-6.png"></li>
+					<li class="item item-7"><img src="images/item-7.png"></li>
+					<li class="item item-8"><img src="images/item-8.png"></li>
+				</ul>
+			</div>
+		</div>
+		<div class="carousel-wrapper autoplay">
+			<div class="carousel">
+				<ul>
+					<li class="item item-1"><img src="images/item-1.png"></li>
+					<li class="item item-2"><img src="images/item-2.png"></li>
+					<li class="item item-3"><img src="images/item-3.png"></li>
+					<li class="item item-4"><img src="images/item-4.png"></li>
+					<li class="item item-5"><img src="images/item-5.png"></li>
+					<li class="item item-6"><img src="images/item-6.png"></li>
+					<li class="item item-7"><img src="images/item-7.png"></li>
+					<li class="item item-8"><img src="images/item-8.png"></li>
+				</ul>
+			</div>
+		</div>
+		<div class="carousel-wrapper auto-scroll-dir">
+			<div class="carousel">
+				<ul>
+					<li class="item item-1"><img src="images/item-1.png"></li>
+					<li class="item item-2"><img src="images/item-2.png"></li>
+					<li class="item item-3"><img src="images/item-3.png"></li>
+					<li class="item item-4"><img src="images/item-4.png"></li>
+					<li class="item item-5"><img src="images/item-5.png"></li>
+					<li class="item item-6"><img src="images/item-6.png"></li>
+					<li class="item item-7"><img src="images/item-7.png"></li>
+					<li class="item item-8"><img src="images/item-8.png"></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="carousel-wrapper no-circle">
+			<div class="carousel">
+				<ul>
+					<li class="item item-1"><img src="images/item-1.png"></li>
+					<li class="item item-2"><img src="images/item-2.png"></li>
+					<li class="item item-3"><img src="images/item-3.png"></li>
+					<li class="item item-4"><img src="images/item-4.png"></li>
+					<li class="item item-5"><img src="images/item-5.png"></li>
+					<li class="item item-6"><img src="images/item-6.png"></li>
+					<li class="item item-7"><img src="images/item-7.png"></li>
+					<li class="item item-8"><img src="images/item-8.png"></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	
+	<script type="text/javascript">
+		$(document).ready( function (){
+			$(".carousel-wrapper.regular").carousel();
+			$(".carousel-wrapper.show-image").carousel({
+				"showImage": 3,
+				"scroll": 3,
+				"slideSpeed": 3000
+			});
+			$(".carousel-wrapper.autoplay").carousel({
+				"autoScroll": true,
+				"slideSpeed": 3000,
+				"pagination": false
+			});
+			
+			$(".carousel-wrapper.auto-scroll-dir").carousel({
+				"autoScroll": true,
+				"autoScrollDir": -1,
+				"autoScrollTimeOut": 5000,
+				"slideSpeed": 4000,
+				"scroll": 2,
+				"showImage": 2
+			});
+			$(".carousel-wrapper.no-circle").carousel({
+				"circle": false
+			});
+		});
+	</script>
+	
+</body>
+</html>
