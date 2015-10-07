@@ -160,19 +160,21 @@
 					
 					$pagination.bind ('click.carousel', function (event){
 						event.preventDefault();
-						cache.text = $(this).text();
-						cache.index = Number(($wrapper.find('li:first').attr('class')).replace(/\D+/g,""));
-							
+						
+						cache.text = Number($(this).text());
+						//cache.index = Number(($wrapper.find('li:first').attr('class')).replace(/\D+/g,""));
+						cache.index = Number($el.find('.pagination .active').text());
+						
 						$el.find('.pagination .active').removeAttr('class');
 						
 						$(this).addClass('active');
 						
 						if ( cache.text > cache.index) {
 							var direction = 1;
-							cache.pagination = cache.text - cache.index;
+							cache.pagination = settings.scroll * cache.text - settings.scroll * cache.index;
 						} else if ( cache.text < cache.index) {
 							var direction = -1;
-							cache.pagination = cache.index - cache.text;
+							cache.pagination = settings.scroll * cache.index - settings.scroll * cache.text;
 						} else {
 							return false;
 						}
@@ -201,7 +203,7 @@
 		} else if ( typeof method === 'object' || ! method ) {
 			return methods.init.apply( this, arguments );
 		} else {
-			$.error( 'Ìåòîä ñ èìåíåì ' +  method + ' íå ñóùåñòâóåò äëÿ jQuery.carousel' );
+			$.error( 'ÐœÐµÑ‚Ð¾Ð´ Ñ Ð¸Ð¼ÐµÐ½ÐµÐ¼ ' +  method + ' Ð½Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚ Ð´Ð»Ñ jQuery.carousel' );
 		} 
 	};
 })(jQuery);
