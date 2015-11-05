@@ -32,7 +32,7 @@
 								
 				$item.stop().animate({
 					left	:  ( dir === 1 ) ? '-=' + ( cache.itemW * scrl)  + 'px' : '+=' + ( cache.itemW * scrl) + 'px'
-				}, opts.slideSpeed, /*opts.sliderEasing,*/ function (){
+				}, opts.slideSpeed, opts.sliderEasing, function (){
 					if ( dir === 1 && circle) {
 						$wrapper.children().slice(0, scrl).remove()
 						$item.css('left', 0);
@@ -85,13 +85,14 @@
 				var settings = {
 					slideSpeed: 500,
 					scroll: 1,
-					showImage: 0,
+					showImage: 1,
 					circle: true,
 					autoScroll: false,
 					autoScrollTimeOut: 2000,
 					autoScrollDir: 1,
-					pagination: true
-					/*sliderEasing: 'easeInQuart'*/
+					showNavArrow: true,
+					pagination: true,
+					sliderEasing: 'easeOutQuad'
 				};
 				
 				return this.each (function(){
@@ -107,7 +108,7 @@
 					
 									
 						cache.itemW			= $items.width();
-					cache.totalItems 	= $items.length;
+						cache.totalItems 	= $items.length;
 					
 					if ( cache.totalItems > settings.scroll ) {
 						
@@ -135,7 +136,7 @@
 						settings.scroll = 3;
 					}*/
 					
-					if ( settings.showImage > 0 ) {
+					if ( cache.totalItems > 0 ) {
 						$el.css({'width': cache.itemW * settings.showImage });
 					}
 					
@@ -143,7 +144,12 @@
 						$navNext 		= $el.find(".next"),
 						$pagination     = $el.find(".pagination a");
 						
+					if (!settings.showNavArrow && settings.autoScroll) {
+						$navPrev.addClass('disabled');
+						$navNext.addClass('disabled');
+					}
 						
+					
 					$navPrev.bind ('click.carousel', function (){
 						if( cache.isAnimating ) return false;
 						cache.isAnimating	= true;
@@ -162,7 +168,6 @@
 						event.preventDefault();
 						
 						cache.text = Number($(this).text());
-						//cache.index = Number(($wrapper.find('li:first').attr('class')).replace(/\D+/g,""));
 						cache.index = Number($el.find('.pagination .active').text());
 						
 						$el.find('.pagination .active').removeAttr('class');
@@ -186,8 +191,11 @@
 					
 					if (settings.autoScroll) {
 						setInterval(function(){
-							aux.navigate (settings.autoScrollDir, $el, $wrapper, settings, cache); 
-						}, settings.autoScrollTimeOut + settings.slideSpeed);	
+							if (!cache.isAnimating) {
+								aux.navigate (settings.autoScrollDir, $el, $wrapper, settings, cache); 
+								cache.isAnimating	= true;
+							}
+						}, settings.autoScrollTimeOut + settings.slideSpeed);
 					}
 
 				});
